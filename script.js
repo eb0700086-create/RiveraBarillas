@@ -8,8 +8,14 @@ function generarPDF() {
     const experiencia = document.getElementById("experiencia").value;
     const educacion = document.getElementById("educacion").value;
 
-    const contenido = `
-        <div style="font-family: Arial; padding: 20px;">
+    if(!nombre || !profesion || !correo || !telefono){
+        alert("Por favor completa los datos obligatorios.");
+        return;
+    }
+
+    const contenido = document.createElement("div");
+    contenido.innerHTML = `
+        <div style="font-family: Arial; padding: 30px;">
             <h1>${nombre}</h1>
             <h3>${profesion}</h3>
             <p><strong>Correo:</strong> ${correo}</p>
@@ -24,10 +30,21 @@ function generarPDF() {
         </div>
     `;
 
-    const elemento = document.createElement("div");
-    elemento.innerHTML = contenido;
+    document.body.appendChild(contenido);
+
+    const opciones = {
+        margin: 10,
+        filename: "Mi_Curriculum.pdf",
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
 
     html2pdf()
-        .from(elemento)
-        .save("Mi_Curriculum.pdf");
+        .set(opciones)
+        .from(contenido)
+        .save()
+        .then(() => {
+            document.body.removeChild(contenido);
+        });
 }
