@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador de Curriculum</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -19,11 +20,11 @@
         <textarea id="experiencia" placeholder="Experiencia laboral"></textarea>
         <textarea id="educacion" placeholder="Educación"></textarea>
 
-        <button type="button" onclick="generarPDF()">Generar PDF</button>
+        <button type="button" onclick="generarPDF()">Generar y Descargar PDF</button>
     </form>
 </div>
 
-<!-- Librería para generar PDF -->
+<!-- Librería PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="script.js"></script>
 
