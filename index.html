@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Curriculum</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de Curriculum</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -24,13 +24,9 @@
     </form>
 </div>
 
-<!-- Contenedor oculto estable para generar el PDF -->
-<div id="areaPDF" style="position: fixed; top: -9999px; left: -9999px; width: 800px;"></div>
+<!-- Librería jsPDF (más estable en móvil) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<!-- Librería html2pdf -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-<!-- Tu script -->
 <script src="script.js"></script>
 
 </body>
