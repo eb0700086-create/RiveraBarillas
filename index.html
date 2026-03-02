@@ -11,7 +11,7 @@
 <div class="container">
     <h1>Generador de Curriculum</h1>
 
-    <form id="cvForm">
+    <form onsubmit="event.preventDefault(); generarPDF();">
         <input type="text" id="nombre" placeholder="Nombre completo" required>
         <input type="text" id="profesion" placeholder="Profesión" required>
         <input type="email" id="correo" placeholder="Correo electrónico" required>
@@ -20,12 +20,17 @@
         <textarea id="experiencia" placeholder="Experiencia laboral"></textarea>
         <textarea id="educacion" placeholder="Educación"></textarea>
 
-        <button type="button" onclick="generarPDF()">Generar y Descargar PDF</button>
+        <button type="submit">Generar y Descargar PDF</button>
     </form>
 </div>
 
-<!-- Librería PDF -->
+<!-- Contenedor oculto estable para generar el PDF -->
+<div id="areaPDF" style="position: fixed; top: -9999px; left: -9999px; width: 800px;"></div>
+
+<!-- Librería html2pdf -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<!-- Tu script -->
 <script src="script.js"></script>
 
 </body>
