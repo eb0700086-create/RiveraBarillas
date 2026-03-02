@@ -1,51 +1,94 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
     margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     padding: 20px;
 }
 
 .container {
     background: white;
-    padding: 25px;
-    border-radius: 15px;
     width: 100%;
     max-width: 450px;
-    margin: auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.6s ease-in-out;
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    color: #333;
 }
 
-input, textarea {
+input,
+textarea {
     width: 100%;
-    margin: 8px 0;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 10px;
     border: 1px solid #ccc;
-    box-sizing: border-box;
     font-size: 14px;
+    transition: 0.3s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #4e73df;
+    outline: none;
+    box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
 }
 
 textarea {
     resize: none;
-    height: 80px;
+    min-height: 80px;
 }
 
 button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border: none;
-    border-radius: 8px;
-    background: #4CAF50;
+    border-radius: 12px;
+    background: #4e73df;
     color: white;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #2e59d9;
+    transform: translateY(-2px);
 }
 
 button:active {
-    background: #45a049;
+    transform: scale(0.98);
+}
+
+/* Animación suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ajuste para pantallas muy pequeñas */
+@media (max-width: 400px) {
+    .container {
+        padding: 20px;
+    }
 }
