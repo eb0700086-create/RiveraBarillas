@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generador de Curriculum</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Generador de Curriculum</h1>
+
+    <form id="cvForm">
+        <input type="text" id="nombre" placeholder="Nombre completo" required>
+        <input type="text" id="profesion" placeholder="Profesión" required>
+        <input type="email" id="correo" placeholder="Correo electrónico" required>
+        <input type="text" id="telefono" placeholder="Teléfono" required>
+        <textarea id="perfil" placeholder="Perfil profesional"></textarea>
+        <textarea id="experiencia" placeholder="Experiencia laboral"></textarea>
+        <textarea id="educacion" placeholder="Educación"></textarea>
+
+        <button type="button" onclick="generarPDF()">Generar PDF</button>
+    </form>
+</div>
+
+<!-- Librería para generar PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
