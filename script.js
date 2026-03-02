@@ -8,15 +8,17 @@ function generarPDF() {
     const experiencia = document.getElementById("experiencia").value.trim();
     const educacion = document.getElementById("educacion").value.trim();
 
-    if(!nombre || !profesion || !correo || !telefono){
+    if (!nombre || !profesion || !correo || !telefono) {
         alert("Completa los datos obligatorios.");
         return;
     }
 
-    const contenido = document.createElement("div");
+    // Obtener el contenedor oculto
+    const areaPDF = document.getElementById("areaPDF");
 
-    contenido.innerHTML = `
-        <div style="font-family: Arial; padding: 30px;">
+    // Insertar contenido dentro del contenedor fijo
+    areaPDF.innerHTML = `
+        <div style="font-family: Arial; padding: 40px;">
             <h1>${nombre}</h1>
             <h3>${profesion}</h3>
             <p><strong>Correo:</strong> ${correo}</p>
@@ -31,21 +33,26 @@ function generarPDF() {
         </div>
     `;
 
-    document.body.appendChild(contenido);
-
     const opciones = {
         margin: 10,
         filename: "Mi_Curriculum.pdf",
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: {
+            scale: 3,
+            scrollY: 0
+        },
+        jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'portrait'
+        }
     };
 
-    html2pdf()
-        .set(opciones)
-        .from(contenido)
-        .save()
-        .then(() => {
-            document.body.removeChild(contenido);
-        });
+    // Pequeño delay para asegurar render en móvil
+    setTimeout(() => {
+        html2pdf()
+            .set(opciones)
+            .from(areaPDF)
+            .save();
+    }, 300);
 }
