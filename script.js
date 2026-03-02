@@ -47,5 +47,8 @@ function generarPDF() {
     y += 8;
     doc.text(educacion || "No especificado", 20, y, { maxWidth: 170 });
 
-    doc.save("Mi_Curriculum.pdf");
+    // 🔥 Esto es lo que hace que funcione en celular
+    const pdfBlob = doc.output('blob');
+    const pdfURL = URL.createObjectURL(pdfBlob);
+    window.open(pdfURL, '_blank');
 }
