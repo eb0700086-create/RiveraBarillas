@@ -1,5 +1,8 @@
 function generarPDF() {
 
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
     const nombre = document.getElementById("nombre").value.trim();
     const profesion = document.getElementById("profesion").value.trim();
     const correo = document.getElementById("correo").value.trim();
@@ -13,46 +16,36 @@ function generarPDF() {
         return;
     }
 
-    // Obtener el contenedor oculto
-    const areaPDF = document.getElementById("areaPDF");
+    let y = 20;
 
-    // Insertar contenido dentro del contenedor fijo
-    areaPDF.innerHTML = `
-        <div style="font-family: Arial; padding: 40px;">
-            <h1>${nombre}</h1>
-            <h3>${profesion}</h3>
-            <p><strong>Correo:</strong> ${correo}</p>
-            <p><strong>Teléfono:</strong> ${telefono}</p>
-            <hr>
-            <h3>Perfil Profesional</h3>
-            <p>${perfil || "No especificado"}</p>
-            <h3>Experiencia</h3>
-            <p>${experiencia || "No especificado"}</p>
-            <h3>Educación</h3>
-            <p>${educacion || "No especificado"}</p>
-        </div>
-    `;
+    doc.setFontSize(18);
+    doc.text(nombre, 20, y);
+    y += 10;
 
-    const opciones = {
-        margin: 10,
-        filename: "Mi_Curriculum.pdf",
-        image: { type: 'jpeg', quality: 1 },
-        html2canvas: {
-            scale: 3,
-            scrollY: 0
-        },
-        jsPDF: {
-            unit: 'mm',
-            format: 'a4',
-            orientation: 'portrait'
-        }
-    };
+    doc.setFontSize(14);
+    doc.text(profesion, 20, y);
+    y += 10;
 
-    // Pequeño delay para asegurar render en móvil
-    setTimeout(() => {
-        html2pdf()
-            .set(opciones)
-            .from(areaPDF)
-            .save();
-    }, 300);
+    doc.setFontSize(12);
+    doc.text("Correo: " + correo, 20, y);
+    y += 8;
+
+    doc.text("Teléfono: " + telefono, 20, y);
+    y += 12;
+
+    doc.text("Perfil Profesional:", 20, y);
+    y += 8;
+    doc.text(perfil || "No especificado", 20, y, { maxWidth: 170 });
+    y += 15;
+
+    doc.text("Experiencia:", 20, y);
+    y += 8;
+    doc.text(experiencia || "No especificado", 20, y, { maxWidth: 170 });
+    y += 15;
+
+    doc.text("Educación:", 20, y);
+    y += 8;
+    doc.text(educacion || "No especificado", 20, y, { maxWidth: 170 });
+
+    doc.save("Mi_Curriculum.pdf");
 }
